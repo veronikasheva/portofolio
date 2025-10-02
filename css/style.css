@@ -112,11 +112,7 @@ body{
 }
 @supports not (-webkit-text-stroke: 0.01px black) {
   .text-cover {
-    text-shadow: 
-      0.3px 0 0 var(--clr-yellow),
-     -0.3px 0 0 var(--clr-yellow),
-      0 0.3px 0 var(--clr-yellow),
-      0 -0.3px 0 var(--clr-yellow);
+    color: var(--clr-yellow) !important;
   }
 }
 .text-first{
@@ -438,7 +434,16 @@ footer p{
     width: 150px;
   }
   .coding_skil-container{
+    display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+  }
+  .coding_skil-container > * {
+    width: 100%;       
+  }
+  .black_square{
+    height: 80px;
+    bottom: -38%;
   }
 }
