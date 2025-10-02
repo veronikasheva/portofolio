@@ -379,9 +379,10 @@ footer p{
 
 @media (max-width: 768px) {
   .header_nav {
+    display: none;
     position: fixed;
     top: 60px;
-    right: -100%;
+    right: 0%;
     width: 50%;
     flex-direction: column;
     align-items: center;
@@ -392,7 +393,8 @@ footer p{
 
   .header_nav li {
     background-color: var(--clr-darkgrey);
-    padding: 20px 130px;
+    padding: 15px 30px;
+    width: 100%;
   }
   .header_nav li:hover{
     background-color: var(--clr-lightblack);
@@ -405,6 +407,7 @@ footer p{
   }
 
   .nav-active {
+    display: flex;
     transform: translateX(0%);
   }
   .about_me_content{
@@ -429,6 +432,13 @@ footer p{
     height: 60px;
   }
   .portfolio_text h1{
-    font-size: 54px;
+    font-size: 50px;
+  }
+  .portfolio_img{
+    width: 150px;
+  }
+  .coding_skil-container{
+    flex-direction: column;
+    gap: 10px;
   }
 }
