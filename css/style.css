@@ -108,7 +108,16 @@ body{
 }
 .text-cover{
   color: transparent !important; 
-   -webkit-text-stroke: 0.01px var(--clr-yellow);
+  -webkit-text-stroke: 0.01px var(--clr-yellow);
+}
+@supports not (-webkit-text-stroke: 0.01px black) {
+  .text-cover {
+    text-shadow: 
+      0.3px 0 0 var(--clr-yellow),
+     -0.3px 0 0 var(--clr-yellow),
+      0 0.3px 0 var(--clr-yellow),
+      0 -0.3px 0 var(--clr-yellow);
+  }
 }
 .text-first{
   position: relative;
@@ -372,7 +381,7 @@ footer p{
   .header_nav {
     position: fixed;
     top: 60px;
-    right: 0;
+    right: -100%;
     width: 50%;
     flex-direction: column;
     align-items: center;
@@ -418,5 +427,8 @@ footer p{
   .lang-btn{
     width: 60px;
     height: 60px;
+  }
+  .portfolio_text h1{
+    font-size: 54px;
   }
 }
