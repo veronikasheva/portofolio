@@ -93,7 +93,10 @@ body{
   width: 55px;
   background: transparent;
 }
-
+.lang-btn{
+  width: 60px;
+  height: 60px;
+}
 /* section 1 Portfolio */
 
 .portfolio{
@@ -153,7 +156,6 @@ body{
 }
 .about_me-first_text{
   font-size: 32px;
-  /* margin-bottom: 15px; */
 }
 .contact_card{
   padding: 10px 40px;
@@ -324,13 +326,37 @@ footer p{
     display: flex;
   }
 
+/* Burger menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  }
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+  }
+
+.toggle div:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle div:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle div:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
   /* adaptation */
 @media (max-width: 1000px) {
   .upshift_img img{
     width: 280px;
   }
 }
-
 @media (max-width: 922px) {
   .portfolio_img {
     left: 3%;
@@ -345,35 +371,6 @@ footer p{
   .upshift_img img {
     display: none;
   }
-}
-/* Burger menu */
-.burger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.burger div {
-  width: 25px;
-  height: 3px;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.toggle div:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.toggle div:nth-child(2) {
-  opacity: 0;
-}
-
-.toggle div:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-@media (max-width: 768px) {
   .header_nav {
     display: none;
     position: fixed;
@@ -395,17 +392,18 @@ footer p{
   .header_nav li:hover{
     background-color: var(--clr-lightblack);
   }
-
   .burger {
     display: flex;
     margin-right: 20px;
     margin-top: 20px;
   }
-
   .nav-active {
     display: flex;
     transform: translateX(0%);
   }
+}
+
+@media (max-width: 768px) {
   .about_me_content{
     flex-direction: column;
     text-align: center;
@@ -422,10 +420,6 @@ footer p{
   }
   .upshift_social_container{
     width: 100%;
-  }
-  .lang-btn{
-    width: 60px;
-    height: 60px;
   }
   .portfolio_text h1{
     font-size: 50px;
