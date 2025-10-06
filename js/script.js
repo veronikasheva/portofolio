@@ -17,7 +17,7 @@ const translations = {
     resume3: "Ukraine <span>Native</span>",
     resume4: "English <span>Intermediate</span>",
     resume5: "Polish <span>Upper-Intermediate</span>",
-    resume6: "Rusian <span>Proficient</span>",
+    resume6: "Russian <span>Proficient</span>",
     resume7: "Education",
     resume8: "2024-2028 Politechnika Lubelska",
     resume9: "Coding skils",
@@ -194,3 +194,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
