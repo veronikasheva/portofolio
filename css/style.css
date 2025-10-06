@@ -20,6 +20,7 @@
 }
 ul, li, ol{
   list-style: none;
+  font-size: 18px;
 }
 
 label{
@@ -401,6 +402,9 @@ footer p{
     display: flex;
     transform: translateX(0%);
   }
+  .upshift_social_container{
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -418,9 +422,7 @@ footer p{
   .about_me_text, .upshift_text{
     width: 100%;
   }
-  .upshift_social_container{
-    width: 100%;
-  }
+
   .portfolio_text h1{
     font-size: 50px;
   }
@@ -441,3 +443,277 @@ footer p{
     bottom: -38%;
   }
 }
+
+/* download button */
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --dur: 3s;
+  --arrowA: polygon(
+    33% 0%,
+    67% 0%,
+    67% 60%,
+    100% 60%,
+    50% 100%,
+    0% 60%,
+    33% 60%
+  );
+  --arrowB: polygon(
+    0% 37.5%,
+    100% 37.5%,
+    100% 62.5%,
+    100% 62.5%,
+    50% 62.5%,
+    0% 62.5%,
+    0% 62.5%
+  );
+  font-size: calc(20px + (40 - 20) * (100vw - 320px) / (2560 - 320));
+}
+
+.download_btn {
+  background: var(--clr-grey);
+  border-radius: 0.2em;
+  color: var(--clr-white);
+  cursor: pointer;
+  display: flex;
+  margin: auto;
+  padding: 0.5em 1em;
+  position: relative;
+  transition: background 0.15s linear;
+  width: 10.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.download_btn:focus {
+  outline: transparent;
+}
+.download_btn::-moz-focus-inner {
+  border: 0;
+}
+.download_btn:not(:disabled):focus,
+.download_btn:not(:disabled):hover {
+  background: var(--clr-darkgreen);
+}
+.download_btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+.download_btn:disabled {
+  cursor: not-allowed;
+}
+.download_btn span,
+.download_btn:before,
+.download_btn:after {
+  display: inline-block;
+  pointer-events: none;
+}
+.download_btn:before,
+.download_btn:after {
+  border-radius: 0.25em;
+  opacity: 0;
+  top: 1em;
+  left: 1.3em;
+  height: 0.5em;
+  transform-origin: 0.25em 50%;
+  z-index: 2;
+}
+.download_btn:before {
+  transform: rotate(-180deg);
+  width: 0.8em;
+}
+.download_btn:after {
+  width: 1.2em;
+}
+.download_btn:before,
+.download_btn:after,
+.dl-icon:before,
+.dl-icon:after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.download_btn:before,
+.download_btn:after,
+.dl-icon:before {
+  background: currentColor;
+}
+.download_btn span + span {
+  margin: auto;
+}
+.dl-icon {
+  margin-right: 0.5em;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+}
+.dl-icon:before {
+  clip-path: var(--arrowA);
+  -webkit-clip-path: var(--arrowA);
+  top: 0;
+  left: calc(50% - 0.55em);
+  transform-origin: 50% 100%;
+  width: 1.1em;
+  height: 1em;
+  z-index: 1;
+}
+.dl-icon:after {
+  background-image: linear-gradient(#0b46da, #0b46da);
+  background-position: -1.5em 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 0.25em 0 0 inset, -0.25em 0 0 inset, 0 -0.25em 0 inset;
+  bottom: 0;
+  width: 100%;
+  height: 0.5em;
+}
+.dl-working:before {
+  animation: checkOutA var(--dur) linear forwards;
+}
+.dl-working:after {
+  animation: checkOutB var(--dur) linear forwards;
+}
+.dl-working .dl-icon {
+  animation: impact var(--dur) linear forwards;
+}
+.dl-working .dl-icon:before {
+  animation: arrowToBar var(--dur) linear forwards;
+}
+.dl-working .dl-icon:after {
+  animation: trayToBar var(--dur) linear forwards;
+}
+
+/* Animation */
+@keyframes impact {
+  from,
+  15% {
+    transform: translateY(0);
+  }
+  17.5% {
+    transform: translateY(0.25em);
+  }
+  20%,
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes arrowToBar {
+  from {
+    clip-path: var(--arrowA);
+    -webkit-clip-path: var(--arrowA);
+  }
+  10% {
+    clip-path: var(--arrowB);
+    -webkit-clip-path: var(--arrowB);
+    transform: translateY(0);
+  }
+  15% {
+    clip-path: var(--arrowB);
+    -webkit-clip-path: var(--arrowB);
+    transform: translateY(0.625em);
+  }
+  30% {
+    clip-path: var(--arrowB);
+    -webkit-clip-path: var(--arrowB);
+    opacity: 1;
+    transform: translateY(0.125em);
+  }
+  35%,
+  to {
+    clip-path: var(--arrowB);
+    -webkit-clip-path: var(--arrowB);
+    opacity: 0;
+    transform: translateY(0.125em);
+  }
+}
+@keyframes trayToBar {
+  from,
+  15% {
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: 0.25em 0 0 inset, -0.25em 0 0 inset, 0 -0.25em 0 inset;
+    transform: translateY(0);
+  }
+  15.1% {
+    background-color: currentColor;
+    border-radius: 0;
+    box-shadow: 0 0 0 inset, 0 0 0 inset, 0 0 0 0.1em inset;
+    transform: translateY(0);
+  }
+  30% {
+    background-color: currentColor;
+    background-position: -1.5em 0;
+    border-radius: 0.25em;
+    box-shadow: 0 0 0 inset, 0 0 0 inset, 0 0 0 0.1em inset;
+    transform: translateY(-0.5em);
+  }
+  90% {
+    background-color: currentColor;
+    background-position: 0 0;
+    border-radius: 0.25em;
+    box-shadow: 0 0 0 inset, 0 0 0 inset, 0 0 0 0.1em inset;
+    opacity: 1;
+    transform: translateY(-0.5em);
+  }
+  90.1%,
+  to {
+    background-color: currentColor;
+    background-position: 0 0;
+    border-radius: 0.25em;
+    box-shadow: 0 0 0 inset, 0 0 0 inset, 0 0 0 0.1em inset;
+    opacity: 0;
+    transform: translateY(-0.5em);
+  }
+}
+@keyframes checkOutA {
+  from,
+  90% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-180deg);
+  }
+  90.1% {
+    opacity: 1;
+    width: 0.8em;
+    transform: translate(0, 0) rotate(-180deg);
+  }
+  92.5% {
+    opacity: 1;
+    width: 1em;
+    transform: translate(0, 0.5em) rotate(-120deg);
+  }
+  95%,
+  to {
+    opacity: 1;
+    width: 1em;
+    transform: translate(0, 0.375em) rotate(-135deg);
+  }
+}
+@keyframes checkOutB {
+  from,
+  90% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  90.1% {
+    opacity: 1;
+    width: 1.2em;
+    transform: translate(0, 0) rotate(0);
+  }
+  92.5% {
+    opacity: 1;
+    width: 1.6em;
+    transform: translate(0, 0.5em) rotate(-60deg);
+  }
+  95%,
+  to {
+    opacity: 1;
+    width: 1.6em;
+    transform: translate(0, 0.375em) rotate(-45deg);
+  }
+}
+
+
