@@ -1,7 +1,5 @@
-// Мова за замовчуванням
 let lang = 'en';
 
-// Словник перекладів
 const translations = {
   en: {
     header1: "About Me",
@@ -17,7 +15,7 @@ const translations = {
     resume3: "Ukraine <span>Native</span>",
     resume4: "English <span>Intermediate</span>",
     resume5: "Polish <span>Upper-Intermediate</span>",
-    resume6: "Russian <span>Proficient</span>",
+    resume6: "Rusian <span>Proficient</span>",
     resume7: "Education",
     resume8: "2024-2028 Politechnika Lubelska",
     resume9: "Coding skils",
@@ -28,7 +26,8 @@ const translations = {
     upshift4: "Worked with project documentation: planning, reports, presentations, and communication.",
     upshift5: "Prepared a project proposal and financial plan for a social startup.",
     upshift6: "Documented meeting minutes and prepared final reports for the team and mentors.",
-    upshift7: "Project social media:"
+    upshift7: "Project social media:",
+    thank1: "If you’d like, you can download my resume in English using the button below:"
   },
   uk: {
     header1: "Про мене",
@@ -55,7 +54,8 @@ const translations = {
     upshift4: "Працювала з проєктною документацією: планування, звіти, презентації та комунікація",  
     upshift5: "Підготувала проєктну пропозицію та фінансовий план для соціального стартапу.",
     upshift6: "Вела протоколи засідань та готувала підсумкові звіти для команди та менторів.",
-    upshift7: "Соціальні мережі проєкту:"
+    upshift7: "Соціальні мережі проєкту:",
+    thank1: "Якщо бажаєте, ви можете завантажити моє резюме англійською мовою, скориставшись кнопкою нижче:"
 
   },
   pl: {
@@ -83,7 +83,8 @@ const translations = {
     upshift4: "Pracowałam z dokumentacją projektową: planowanie, raporty, prezentacje i komunikacja", 
     upshift5: "Przygotowałam propozycję projektu i plan finansowy dla społecznego startupu.",
     upshift6: "Prowadziłam protokoły spotkań i przygotowywałam końcowe raporty dla zespołu i mentorów.",
-    upshift7: "Media społecznościowe projektu:"
+    upshift7: "Media społecznościowe projektu:",
+    thank1: "Jeśli chcesz, możesz pobrać moje CV w języku angielskim, korzystając z przycisku poniżej:"
   },
   ru: {
     header1: "Обо мне",
@@ -110,7 +111,8 @@ const translations = {
     upshift4: "Работала с проектной документацией: планирование, отчёты, презентации и коммуникация",
     upshift5: "Подготовила проектное предложение и финансовый план для социального стартапа.",
     upshift6: "Вела протоколы заседаний и готовила итоговые отчёты для команды и менторов.",
-    upshift7: "Социальные сети проекта:"
+    upshift7: "Социальные сети проекта:",
+    thank1: "Если хотите, вы можете скачать моё резюме на английском языке, воспользовавшись кнопкой ниже:"
   }
 };
 
@@ -138,7 +140,7 @@ function translatePage() {
   document.querySelectorAll("[data-translate]").forEach(el => {
     const key = el.dataset.translate;
     if (translations[lang] && translations[lang][key]) {
-      el.innerHTML = translations[lang][key]; // innerHTML зберігає <span> та <br>
+      el.innerHTML = translations[lang][key]; 
     }
   });
 }
@@ -155,10 +157,9 @@ const nav = document.querySelector('.header_nav');
 const navLinks = document.querySelectorAll('.header_nav li');
 
 burger.addEventListener('click', () => {
-  // Відкриття/закриття навігації
+  
   nav.classList.toggle('nav-active');
 
-  // Анімація посилань
   navLinks.forEach((link, index) => {
     if (link.style.animation) {
       link.style.animation = '';
@@ -167,11 +168,9 @@ burger.addEventListener('click', () => {
     }
   });
 
-  // Анімація бургеру
   burger.classList.toggle('toggle');
 });
 
-// Закриття меню при кліку на посилання
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     nav.classList.remove('nav-active');
@@ -195,3 +194,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// -----------------------------
+// 4. Завантаження резюме
+// -----------------------------
+
+document.addEventListener("DOMContentLoaded", function () {
+    this.addEventListener("click", e => {
+        let tar = e.target.closest("[data-dl]");
+        if (tar) {
+            let dlClass = "dl-working";
+            if (!tar.classList.contains(dlClass)) {
+                let lastSpan = tar.querySelector("span:last-child"),
+                    lastSpanText = lastSpan.textContent,
+                    timeout = getMSFromProperty("--dur", ":root");
+
+                tar.classList.add(dlClass);
+                lastSpan.textContent = "Downloading…";
+                tar.disabled = true;
+
+                // **Завантаження PDF**
+                const pdfUrl = "./img/Resume.pdf"; 
+                const link = document.createElement("a");
+                link.href = pdfUrl;
+                link.download = "Resume.pdf"; 
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                setTimeout(() => {
+                    lastSpan.textContent = "Completed!";
+                }, timeout * 0.9);
+
+                setTimeout(() => {
+                    tar.classList.remove(dlClass);
+                    lastSpan.textContent = lastSpanText;
+                    tar.disabled = false;
+                }, timeout + 1000);
+            }
+        }
+    });
+});
+
+function getMSFromProperty(property, selector) {
+    let cs = window.getComputedStyle(document.querySelector(selector)),
+        transDur = cs.getPropertyValue(property),
+        msLabelPos = transDur.indexOf("ms"),
+        sLabelPos = transDur.indexOf("s");
+
+    if (msLabelPos > -1)
+        return transDur.substr(0, msLabelPos);
+    else if (sLabelPos > -1)
+        return transDur.substr(0, sLabelPos) * 1000;
+}
