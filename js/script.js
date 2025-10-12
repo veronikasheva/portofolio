@@ -246,3 +246,16 @@ function getMSFromProperty(property, selector) {
     else if (sLabelPos > -1)
         return transDur.substr(0, sLabelPos) * 1000;
 }
+// fade-in
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOnScroll = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // анімація спрацьовує один раз
+    }
+  });
+}, { threshold: 0.1 });
+
+faders.forEach(fader => appearOnScroll.observe(fader));
