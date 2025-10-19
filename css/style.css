@@ -389,13 +389,11 @@ footer p{
   }
   .header_nav li a {
   display: block;      
-  width: 100%;         
-  height: 100%;        
-  color: inherit;        
+  width: 100%;
+  padding: 15px 30px;
   }
   .header_nav li {
     background-color: var(--clr-darkgrey);
-    padding: 15px 30px;
     width: 100%;
   }
   .header_nav li a:hover{
@@ -734,6 +732,7 @@ footer p{
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
