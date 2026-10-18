@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 tar.disabled = true;
 
                 // **Завантаження PDF**
-                const pdfUrl = "./img/Resume.pdf"; 
+                const pdfUrl = "./img/Resume_remake.pdf"; 
                 const link = document.createElement("a");
                 link.href = pdfUrl;
                 link.download = "Resume.pdf"; 
